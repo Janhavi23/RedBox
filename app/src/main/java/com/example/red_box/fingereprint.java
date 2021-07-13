@@ -57,6 +57,7 @@ public class fingereprint extends AppCompatActivity {
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
                 Toast.makeText(getApplicationContext(), "Authentication succeeded!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(fingereprint.this,MainActivity.class);
 
             }
 

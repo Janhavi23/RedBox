@@ -13,10 +13,10 @@
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.336"
+        app:layout_constraintHorizontal_bias="0.353"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.884" />
+        app:layout_constraintVertical_bias="0.902" />
 
     <Button
         android:id="@+id/encrypt"
@@ -26,35 +26,47 @@
         android:text="Encrypt"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.873"
+        app:layout_constraintHorizontal_bias="0.415"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstkey"
-        app:layout_constraintVertical_bias="0.779" />
+        app:layout_constraintTop_toBottomOf="@+id/secondkey"
+        app:layout_constraintVertical_bias="0.0" />
+
 
     <EditText
         android:id="@+id/plaintext"
         android:layout_width="330dp"
         android:layout_height="63dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="148dp"
         android:ems="10"
         android:fontFamily="monospace"
         android:hint="Enter the plain text"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.336"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/audioEncrypt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Audio Encrypt"
+        app:layout_constraintTop_toBottomOf="@+id/plaintext"
+        tools:layout_editor_absoluteX="110dp">
+
+    </Button>
 
     <EditText
         android:id="@+id/firstkey"
         android:layout_width="330dp"
         android:layout_height="60dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="92dp"
         android:ems="10"
         android:hint="Enter the 1st key for AES encryption"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.336"
+        app:layout_constraintHorizontal_bias="0.469"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/plaintext" />
 
@@ -62,12 +74,12 @@
         android:id="@+id/secondkey"
         android:layout_width="330dp"
         android:layout_height="61dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="52dp"
         android:ems="10"
         android:hint="Enter the 2nd key for Voice encryption"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.364"
+        app:layout_constraintHorizontal_bias="0.469"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstkey" />
 

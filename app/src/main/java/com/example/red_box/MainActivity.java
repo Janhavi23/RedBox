@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.Settings;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
@@ -22,9 +23,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.File;
 import java.security.KeyStore;
+import java.util.HashMap;
 import java.util.Locale;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.Locale;
 import java.util.concurrent.Executor;
@@ -34,6 +39,8 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
 public class MainActivity extends Activity {
+    private Button audioEncrypt;
+    TextToSpeech tts;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -42,7 +49,6 @@ public class MainActivity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextToSpeech t1 ;
 
 
         //final String secretKey = "ssshhhhhhhhhhh!!!!";
@@ -50,16 +56,34 @@ public class MainActivity extends Activity {
         EditText secretkey =(EditText) findViewById(R.id.firstkey);
         TextView showencryptedtext = (TextView) findViewById(R.id.textView);
         Button encrypt = (Button) findViewById(R.id.encrypt);
+        audioEncrypt = findViewById(R.id.audioEncrypt);
 
         showencryptedtext.setText("Encrypted text will be displayed here");
 
-        t1=new TextToSpeech(getApplicationContext(), new  TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if(status != TextToSpeech.ERROR) {
-                    //t1.setLanguage(Locale.ENGLISH);
 
-                }
+        audioEncrypt.setOnClickListener(new View.OnClickListener() {
+
+
+
+            @Override
+            public void onClick(View view) {
+
+                tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+                    @Override
+                    public void onInit(int i) {
+                        if (i == TextToSpeech.SUCCESS) {
+                            tts.setLanguage(Locale.ENGLISH);
+                            tts.setSpeechRate(1.0f);
+                            tts.speak(plaintext.getText().toString(), TextToSpeech.QUEUE_ADD, null);
+                            HashMap<String, String> myHashRender = new HashMap();
+                            String destinationFileName = "/app/src/main/res/audio/test.wav";
+                            myHashRender.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, plaintext.getText().toString());
+                            tts.synthesizeToFile(plaintext.getText().toString(), myHashRender, destinationFileName);
+                        }
+                    }
+                });
+
+
             }
         });
 
@@ -77,11 +101,9 @@ public class MainActivity extends Activity {
                 Log.i(decryptedString,"decrypted_string");
                 Log.i("hello lets print this", "this is a message for debugging");
 
-                t1.setLanguage(Locale.ENGLISH);
-                t1.speak(encryptedString, TextToSpeech.QUEUE_FLUSH, null);
-
             }
         });
+
 
     }
 }
