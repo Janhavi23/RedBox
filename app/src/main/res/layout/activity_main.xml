@@ -6,6 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/linear">
+        <TextView
+            android:id="@+id/txtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="100dp"
+            android:gravity="center"
+            android:text="Password Manager"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toStartOf="parent"
+            ></TextView>
+    </LinearLayout>
+
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="298dp"
@@ -16,71 +35,62 @@
         app:layout_constraintHorizontal_bias="0.353"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.902" />
+        app:layout_constraintVertical_bias="0.889" />
 
     <Button
         android:id="@+id/encrypt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="20dp"
         android:text="Encrypt"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.415"
+        app:layout_constraintHorizontal_bias="0.467"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/secondkey"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintTop_toBottomOf="@+id/firstkey"
+        app:layout_constraintVertical_bias="0.372" />
 
     <EditText
-        android:id="@+id/plaintext"
+        android:id="@+id/email"
         android:layout_width="330dp"
         android:layout_height="63dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="164dp"
         android:ems="10"
         android:fontFamily="monospace"
-        android:hint="Enter the plain text"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        android:hint="Enter the your email"
+        android:inputType="textEmailAddress"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/audioEncrypt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Audio Encrypt"
-        app:layout_constraintTop_toBottomOf="@+id/plaintext"
-        tools:layout_editor_absoluteX="110dp">
 
-    </Button>
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="330dp"
+        android:layout_height="63dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="280dp"
+        android:ems="10"
+        android:fontFamily="monospace"
+        android:hint="Enter the your password"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.308"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/firstkey"
         android:layout_width="330dp"
         android:layout_height="60dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="48dp"
         android:ems="10"
         android:hint="Enter the 1st key for AES encryption"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
+        app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/plaintext" />
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
-    <EditText
-        android:id="@+id/secondkey"
-        android:layout_width="330dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="52dp"
-        android:ems="10"
-        android:hint="Enter the 2nd key for Voice encryption"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstkey" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

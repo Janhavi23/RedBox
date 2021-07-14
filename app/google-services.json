@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "18756894509",
+    "project_id": "red-box-244cf",
+    "storage_bucket": "red-box-244cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:18756894509:android:283aa45bc106b890381da4",
+        "android_client_info": {
+          "package_name": "com.example.red_box"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "18756894509-oudqc2oi1cg79cv057t0oo9n7r4si759.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCXd-awN30rJZ1tvtuXpkWUyx-RJNDucA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "18756894509-oudqc2oi1cg79cv057t0oo9n7r4si759.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
