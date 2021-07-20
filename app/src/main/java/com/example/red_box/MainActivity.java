@@ -45,12 +45,11 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
-public class MainActivity extends Activity {
-    private Button audioEncrypt;
+public class MainActivity extends Activity{
     private EditText email,password;
-    TextToSpeech tts;
     FirebaseFirestore db;
-    String docid;
+    DESEncryption Des;
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -66,37 +65,15 @@ public class MainActivity extends Activity {
         EditText secretkey =(EditText) findViewById(R.id.firstkey);
         TextView showencryptedtext = (TextView) findViewById(R.id.textView);
         Button encrypt = (Button) findViewById(R.id.encrypt);
-       // audioEncrypt = findViewById(R.id.audioEncrypt);
         db = FirebaseFirestore.getInstance();
+        try {
+            Des = new DESEncryption();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         showencryptedtext.setText("Encrypted text will be displayed here");
 
-
-        /*audioEncrypt.setOnClickListener(new View.OnClickListener() {
-
-
-
-            @Override
-            public void onClick(View view) {
-
-                tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-                    @Override
-                    public void onInit(int i) {
-                        if (i == TextToSpeech.SUCCESS) {
-                            tts.setLanguage(Locale.ENGLISH);
-                            tts.setSpeechRate(1.0f);
-                            tts.speak(password.getText().toString(), TextToSpeech.QUEUE_ADD, null);
-                            HashMap<String, String> myHashRender = new HashMap();
-                            String destinationFileName = "/sdcard/test.wav";
-                            myHashRender.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, password.getText().toString());
-                            tts.synthesizeToFile(password.getText().toString(), myHashRender, destinationFileName);
-                        }
-                    }
-                });
-
-
-            }
-        });*/
 
         encrypt.setOnClickListener(new View.OnClickListener() {
 
@@ -104,17 +81,21 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 String Email = email.getText().toString();
                 String Password = password.getText().toString();
-                String encryptedEmail = Aes.encrypt(Email, secretkey.getText().toString());
+                String desEncryptEmail = Des.encrypt(Email);
+                String encryptedEmail = Aes.encrypt(desEncryptEmail, secretkey.getText().toString());
                 String decryptedEmail = Aes.decrypt(encryptedEmail, secretkey.getText().toString());
-                String encryptedPassword = Aes.encrypt(Password, secretkey.getText().toString());
+                String desDecryptEmail = Des.decrypt(decryptedEmail);
+                String desEncryptedPassword = Des.encrypt(Password);
+                String encryptedPassword = Aes.encrypt(desEncryptedPassword, secretkey.getText().toString());
                 String decryptedPassword = Aes.decrypt(encryptedPassword, secretkey.getText().toString());
+                String desDecryptedPassword = Des.decrypt(decryptedPassword);
 
                 Map<String, Object> data = new HashMap<>();
                 data.put("encrypted Email",encryptedEmail);
-                data.put("decrypted Email",decryptedEmail);
+                data.put("decrypted Email",desDecryptEmail);
                 data.put("encrypted Password",encryptedPassword);
-                data.put("decrypted Password",decryptedPassword);
-                db.collection("users").document(Email)
+                data.put("decrypted Password",desDecryptedPassword);
+                db.collection("users").document(getIntent().getStringExtra("Code")).collection("Emails").document(Email)
                         .set(data)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override

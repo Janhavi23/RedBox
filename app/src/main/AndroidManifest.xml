@@ -13,6 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Red_Box">
+        <activity android:name=".retrieve_Credentials"></activity>
+        <activity android:name=".mainPage" />
+        <activity android:name=".fetch_password" />
         <activity android:name=".home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,10 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".fingereprint"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".fingereprint" />
     </application>
 
 </manifest>
