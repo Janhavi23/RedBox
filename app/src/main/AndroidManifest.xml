@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Red_Box">
-        <activity android:name=".retrieve_Credentials"></activity>
+        <activity android:name=".retrieve_Credentials" />
         <activity android:name=".mainPage" />
         <activity android:name=".fetch_password" />
         <activity android:name=".home">

@@ -24,7 +24,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
 import java.security.KeyStore;
+import java.security.NoSuchAlgorithmException;
+import java.security.SignatureException;
 import java.util.HashMap;
 import java.util.Locale;
 import android.widget.Toast;
@@ -91,10 +95,11 @@ public class MainActivity extends Activity{
                 String desDecryptedPassword = Des.decrypt(decryptedPassword);
 
                 Map<String, Object> data = new HashMap<>();
-                data.put("encrypted Email",encryptedEmail);
-                data.put("decrypted Email",desDecryptEmail);
-                data.put("encrypted Password",encryptedPassword);
-                data.put("decrypted Password",desDecryptedPassword);
+                data.put("encrypted_Email",encryptedEmail);
+                data.put("decrypted_Email",desDecryptEmail);
+                data.put("encrypted_Password",encryptedPassword);
+                data.put("decrypted_Password",desDecryptedPassword);
+                data.put("key",Des.encrypt(secretkey.getText().toString()));
                 db.collection("users").document(getIntent().getStringExtra("Code")).collection("Emails").document(Email)
                         .set(data)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {

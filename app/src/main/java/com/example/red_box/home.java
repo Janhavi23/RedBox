@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -18,6 +20,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SignatureException;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.security.auth.Destroyable;
 
 public class home extends AppCompatActivity {
     Button login,retrieve;
@@ -30,26 +34,22 @@ public class home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         login = findViewById(R.id.loginbtn);
-        retrieve = findViewById(R.id.retrievebtn);
         code = findViewById(R.id.PinCode);
         db = FirebaseFirestore.getInstance();
-        CreatingDigitalSignature sign = new CreatingDigitalSignature();
+
 
         login.setOnClickListener(new View.OnClickListener() {
             String signature;
             @Override
             public void onClick(View view) {
+
+                DESEncryption Des = null;
                 try {
-                    signature = sign.digitalSignature(code.getText().toString());
-                } catch (NoSuchAlgorithmException e) {
-                    e.printStackTrace();
-                } catch (InvalidKeyException e) {
-                    e.printStackTrace();
-                } catch (SignatureException e) {
-                    e.printStackTrace();
-                } catch (UnsupportedEncodingException e) {
+                    Des = new DESEncryption();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
+                signature = Des.encrypt(code.getText().toString());
                 Map<String, Object> data = new HashMap<>();
                 data.put("Signature",signature);
                 db.collection("users").document(code.getText().toString()).set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -63,13 +63,5 @@ public class home extends AppCompatActivity {
 
             }
         });
-
-       /* retrieve.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(home.this,fetch_password.class);
-                startActivity(intent);
-            }
-        });*/
     }
 }

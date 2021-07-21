@@ -30,7 +30,9 @@ public class mainPage extends AppCompatActivity {
         retrieve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mainPage.this,fetch_password.class);
+               // Intent intent = new Intent(mainPage.this,fetch_password.class);
+                Intent intent = new Intent(mainPage.this,retrieve_Credentials.class);
+                intent.putExtra("Code",getIntent().getStringExtra("Code"));
                 startActivity(intent);
             }
         });

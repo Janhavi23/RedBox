@@ -14,14 +14,16 @@
         android:text="Password Manager"
         android:gravity="center_horizontal"
         android:layout_marginTop="190dp"
-        android:layout_marginLeft="90dp"
+        android:layout_marginLeft="80dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
          />
     <EditText
         android:id="@+id/PinCode"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Enter a code"
+        android:layout_margin="80dp"
         android:inputType="number"
         android:layout_marginTop="50dp"/>
 
@@ -31,16 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:layout_marginLeft="140dp"
-        android:text="Login"
+        android:text="Start"
          />
-
-    <Button
-        android:id="@+id/retrievebtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginLeft="100dp"
-        android:text="Retrieve Password"
-        />
 
 </LinearLayout>

@@ -1,26 +1,20 @@
 package com.example.red_box;
 
+
 public class Email {
-    String Email,Password;
+    String decrypted_Email ;
 
-    public Email(String email, String password) {
-        Email = email;
-        Password = password;
+    public Email(){};
+
+    public Email(String decrypted_Email) {
+        this.decrypted_Email = decrypted_Email;
     }
 
-    public String getEmail() {
-        return Email;
+    public String getDecrypted_Email() {
+        return decrypted_Email;
     }
 
-    public void setEmail(String email) {
-        Email = email;
-    }
-
-    public String getPassword() {
-        return Password;
-    }
-
-    public void setPassword(String password) {
-        Password = password;
+    public void setDecrypted_Email(String decrypted_Email) {
+        this.decrypted_Email = decrypted_Email;
     }
 }
